@@ -12,7 +12,7 @@ Chrome extension to quickly generate responses to your peer's Canvas discussion 
 ## How to Use
 
 1. Select text on any webpage that you want to use as a basis for generating a response.
-2. Right-click to open the context menu and click on "Generate Response" to activate the extension.
+2. Right-click to open the context menu and click on "Respond to this" to activate the extension.
 3. A popup window will appear where you can select the response level and specify word count.
 4. Click "Generate" to receive a custom response based on your selections.
 5. Click on the response text to copy it to your clipboard.
