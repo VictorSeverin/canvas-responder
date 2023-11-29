@@ -2,7 +2,6 @@
 import OpenAI from 'openai';
 
 export const generateResponse = async (promptText) => {
-    // Define your API request payload based on the requirements of the OpenAI API
 
     const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
