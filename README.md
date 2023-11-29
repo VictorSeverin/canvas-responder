@@ -1,116 +1,40 @@
-<div align="center">
-<img src="public/icon-128.png" alt="logo"/>
-<h1> Chrome Extension Boilerplate with<br/>React + Vite + TypeScript + TailwindCSS</h1>
+# Canvas Discussion Board Response Generator
 
-<h5>
-This is a side product of my Chrome Extension <a target="_blank" rel="noopener noreferrer" href="https://chrome.google.com/webstore/detail/supatabs/icbcnjlaegndjabnjbaeihnnmidbfigk">Supatabs</a>.
-Supatabs is a 🔥🔥 BLAZINGLY FAST 🔥🔥 free alternative to OneTab with support for chrome tab groups and searching through tabs.
-</h5>
+Chrome extension to quickly generate responses to your peer's Canvas discussion board posts. It utilizes OpenAI's API to process selected text and suggest responses appropriate for high school, college, or expert-level discussions.
 
-</div>
+## Features
 
-## Table of Contents
+- **Context Menu Integration**: Right-click to access the extension's features directly from the context menu after selecting text on any webpage.
+- **Response Level Selection**: Choose the complexity of the generated response from the popup's dropdown menu.
+- **Word Count Specification**: Set minimum and maximum word counts for the generated responses.
+- **Immediate Feedback**: Receive visual confirmation when text is copied to the clipboard.
 
-- [Intro](#intro)
-- [Why another boilerplate?](#why)
-- [Features](#features)
-- [Usage](#usage)
-  - [Setup](#setup) 
-- [Tech Docs](#tech)
-- [Credit](#credit)
-- [Contributing](#contributing)
+## How to Use
+
+1. Select text on any webpage that you want to use as a basis for generating a response.
+2. Right-click to open the context menu and click on "Generate Response" to activate the extension.
+3. A popup window will appear where you can select the response level and specify word count.
+4. Click "Generate" to receive a custom response based on your selections.
+5. Click on the response text to copy it to your clipboard.
+
+## Installation
+
+To install the extension:
+
+1. Clone the repository to your local machine using `git clone https://github.com/yourusername/canvas-response-generator.git`.
+2. Navigate to `chrome://extensions/` in the Google Chrome browser.
+3. Enable "Developer mode" at the top right.
+4. Click "Load unpacked" and select the `dist` folder from the cloned repository.
+5. The extension should now be installed and visible in your extensions list.
+6. Create a `.env` file in your root directory and create `OPENAI_API_KEY` and paste you OpenAi api key.
 
 
-## Intro <a name="intro"></a>
-This boilerplate is meant to be a minimal quick start for creating chrome extensions using React, Typescript and Tailwind CSS.
+### Available Scripts
 
-Built for:
-> For improved DX and rapid building vite and nodemon are used.
+In the project directory, you can run:
 
-> Chrome does not accept manifest v2 extensions since Jan 2022, therefore this template uses manifest v3.
+- `npm run build` - Builds the app for production to the `dist` folder.
 
-> Firefox + other browsers don't yet support manifest v3, so cross browser usage is not encouraged.
+### Building for Production
 
-* Read more about Chrome manifest v2 support [here](https://developer.chrome.com/docs/extensions/mv2/).
-* Read more about Firefox Manifest v3 support [here](https://discourse.mozilla.org/t/manifest-v3/94564).
-
-As soon as Firefox supports manifest v3, support will be added in this repo as well.
-
-Oh by the way ... I also implemented a chrome local/sync storage hook for react, which works well with this 
-template. [Check it out here](https://gist.github.com/JohnBra/c81451ea7bc9e77f8021beb4f198ab96).
-
-## Why another boilerplate? <a name="why"></a>
-I have used webpack react boilerplates and found it too hard to configure.
-
-Vite is mega easy to understand which makes it easier to get into and to maintain for others.
-
-I couldn't find another minimal boilerplate for React, TypeScript and Tailwind CSS. So here it is.
-
-## Features <a name="features"></a>
-- [React 18](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [ESLint](https://eslint.org/)
-- [Chrome Extension Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
-- [Github Action](https://github.com/JohnBra/vite-web-extension/actions/workflows/ci.yml) to build and zip your extension (manual trigger)
-
-## Usage <a name="usage"></a>
-
-### Setup <a name="setup"></a>
-1. Clone this repository｀
-2. Change `name` and `description` in `manifest.json`
-3. Run `yarn` or `npm i` (check your node version >= 16)
-4. Run `yarn dev` or `npm run dev`
-5. Load Extension in Chrome
-   1. Open - Chrome browser
-   2. Access - chrome://extensions
-   3. Tick - Developer mode
-   4. Find - Load unpacked extension
-   5. Select - `dist` folder in this project (after dev or build)
-6. If you want to build in production, Just run `yarn build` or `npm run build`.
-
-### Customization
-The template includes **all** of the Chrome extension pages. You will likely have to customize it to fit your needs.
-
-E.g. you don't want the newtab page to activate whenever you open a new tab:
-1. remove the directory `newtab` and its contents in `src/pages`
-2. remove `chrome_url_overrides: { newtab: 'src/pages/newtab/index.html' },` in `manifest.json`
-
-If you need to declare extra HTML pages beyond those the manifest accommodates, place them in the Vite config under build.rollupOptions.input.
-
-This example includes a welcome page to open when the user installs the extension.
-
-CSS files in the `src/pages/*` directories are not necessary. They are left in there in case you want 
-to use it in combination with Tailwind CSS. **Feel free to delete them**.
-
-Tailwind can be configured as usual in the `tailwind.config.cjs` file. See doc link below.
-
-### Publish your extension
-To upload an extension to the Chrome store you have to pack (zip) it and then upload it to your item in entry 
-in the Chrome Web Store.
-
-This repo includes a Github Action Workflow to create a 
-[optimized prod build and create the zip file](https://github.com/JohnBra/vite-web-extension/actions/workflows/ci.yml).
-
-To run the workflow do the following:
-1. Go to the **"Actions"** tab in your forked repository from this template
-2. In the left sidebar click on **"Build and Zip Extension"**
-3. Click on **"Run Workflow"** and select the main branch, then **"Run Workflow"**
-4. Refresh the page and click the most recent run
-5. In the summary page **"Artifacts"** section click on the generated **"vite-web-extension"**
-6. Upload this file to the Chrome Web Store as described [here](https://developer.chrome.com/docs/webstore/publish/)
-
-# Tech Docs <a name="tech"></a>
-- [Vite](https://vitejs.dev/)
-- [Vite Plugin](https://vitejs.dev/guide/api-plugin.html)
-- [Chrome Extension with manifest 3](https://developer.chrome.com/docs/extensions/mv3/)
-- [Rollup](https://rollupjs.org/guide/en/)
-- [@crxjs/vite-plugin](https://crxjs.dev/vite-plugin)
-- [Tailwind CSS](https://tailwindcss.com/docs/configuration)
-
-# Credit <a name="credit"></a>
-Heavily inspired by [Jonghakseo's vite chrome extension boilerplate](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite). 
-It uses SASS instead of TailwindCSS if you want to check it out.
-
-# Contributing <a name="contributing"></a>
-Feel free to open PRs or raise issues!
+Before deploying, make sure to compile the project with `npm run build`. The `dist` folder will contain all the necessary files to load the extension into Chrome.
